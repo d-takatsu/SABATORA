@@ -54,13 +54,53 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // 3. Overlay Close (Writer Details)
     // ==========================================
-    const closeOverlays = document.querySelectorAll('.close-overlay');
-    closeOverlays.forEach(btn => {
-        btn.addEventListener('click', (e) => {
+    const infoContents = document.querySelectorAll('.writer-info-content');
+    infoContents.forEach(content => {
+        content.addEventListener('click', (e) => {
             const details = e.target.closest('details');
             if (details) {
                 details.removeAttribute('open');
             }
         });
     });
+    // ==========================================
+    // 4. Gallery Modal
+    // ==========================================
+    const galleryItems = document.querySelectorAll('.gallery-item img');
+    const galleryModal = document.getElementById('gallery-modal');
+    const modalImg = document.getElementById('gallery-modal-img');
+    const closeModalBtn = document.querySelector('.gallery-modal-close');
+
+    if (galleryItems.length > 0 && galleryModal && modalImg && closeModalBtn) {
+        // 画像クリックでモーダルを開く
+        galleryItems.forEach(img => {
+            img.style.cursor = 'pointer'; // クリック可能であることを明示
+            img.addEventListener('click', function() {
+                galleryModal.classList.add('is-open');
+                modalImg.src = this.src;
+                document.body.style.overflow = 'hidden'; // 背面のスクロールを禁止
+            });
+        });
+
+        // モーダルを閉じる関数
+        const closeGalleryModal = () => {
+            galleryModal.classList.remove('is-open');
+            modalImg.src = '';
+            document.body.style.overflow = ''; // 背面のスクロールを再開
+        };
+
+        // 背景または×ボタンクリックで閉じる
+        galleryModal.addEventListener('click', function(e) {
+            if (e.target === galleryModal || e.target === closeModalBtn) {
+                closeGalleryModal();
+            }
+        });
+
+        // Escキーで閉じる
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && galleryModal.classList.contains('is-open')) {
+                closeGalleryModal();
+            }
+        });
+    }
 });

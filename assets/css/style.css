@@ -39,6 +39,13 @@ body {
     letter-spacing: 0.05em;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
 }
 
 a {
@@ -282,8 +289,8 @@ button {
 }
 @media (max-width: 991px) {
     .hero {
-        padding-top: 72px;
-        padding-bottom: 20px;
+        padding-top: 100px; /* ヘッダー高+余裕を持たせる */
+        padding-bottom: 0px; /* トップ画像下の余白を詰める */
     }
 }
 
@@ -766,7 +773,7 @@ a.content-item:hover {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        min-height: 56px;
+        min-height: 64px; /* 高さを少し増やす */
     }
     
     .header-logo-container {
@@ -809,8 +816,8 @@ a.content-item:hover {
     }
 
     .header-logo {
-        height: 40px;
-        max-width: 44px;
+        height: 60px; /* ロゴを1.5倍に拡大 (40px -> 60px) */
+        max-width: 66px; /* アスペクト比維持 */
         width: auto;
         object-fit: contain;
     }
@@ -823,16 +830,15 @@ a.content-item:hover {
         z-index: 1002;
     }
     
-    /* ドロップダウンメニュー */
     .header-nav {
         position: fixed;
-        top: 56px;
+        top: 64px; /* ヘッダー高さ増加に伴い調整 */
         right: 0;
         left: auto;
         width: 200px;
         height: auto;
-        max-height: calc(100vh - 56px);
-        max-height: calc(100dvh - 56px);
+        max-height: calc(100vh - 64px);
+        max-height: calc(100dvh - 64px);
         background-color: #fff;
         flex-direction: column;
         justify-content: flex-start;
@@ -916,12 +922,18 @@ a.content-item:hover {
     
     /* CONTENTカード：スマホでは高さとpaddingを縮小 */
     .content-item {
-        padding: 24px 16px;
-        min-height: 0;
+        padding: 16px 12px; /* 余白をさらに減らす */
+        min-height: auto; /* 高さを固定しない */
     }
     .content-icon {
-        height: 60px;
-        margin-bottom: 12px;
+        height: 50px; /* 少し縮小してバランスをとる */
+        margin-bottom: 8px; /* アイコン上の余白を減らす(タイトルの上の余白を詰める) */
+    }
+    .content-title {
+        font-size: 1.15rem; /* スマホ向けに少し文字サイズを調整 */
+    }
+    .content-desc {
+        font-size: 0.85rem;
     }
     
     /* SOCIALカード */
@@ -962,12 +974,6 @@ a.content-item:hover {
     .past-event-img {
         flex: none;
         width: 100%;
-    }
-    
-    /* gallery グリッドを2列に */
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
     }
     
     /* フッター余白 */
@@ -1067,13 +1073,20 @@ a.content-item:hover {
 }
 @media (max-width: 768px) {
     .subnav-list {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px 8px;
-        text-align: center;
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        gap: 20px;
+        padding-bottom: 10px; /* スクロールバー用余白 */
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* Firefox: スクロールバー非表示 */
     }
-    .subnav-list li:last-child:nth-child(odd) {
-        grid-column: 1 / -1;
+    .subnav-list::-webkit-scrollbar {
+        display: none; /* Chrome/Safari: スクロールバー非表示 */
+    }
+    .subnav-list li {
+        white-space: nowrap;
     }
 }
 .subnav-list a {
@@ -1260,23 +1273,22 @@ a.content-item:hover {
     overflow-y: auto;
     z-index: 10;
     box-sizing: border-box;
+    cursor: pointer; /* モーダル全体をクリック可能に */
 }
 
-.close-overlay-wrapper {
-    text-align: center;
-    margin-top: 20px;
+.close-overlay-top {
+    position: sticky;
+    top: 0;
+    float: right; /* 右上に配置 */
+    font-size: 1.5rem;
+    line-height: 1;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.7);
+    z-index: 20;
+    transition: color 0.3s;
 }
-.close-overlay {
-    text-align: center;
-    font-size: 0.85rem;
-    cursor: pointer;
-    border: 1px solid rgba(255,255,255,0.5);
-    padding: 8px 15px;
-    border-radius: 20px;
-    display: inline-block;
-}
-.close-overlay:hover {
-    background-color: rgba(255,255,255,0.1);
+.writer-info-content:hover .close-overlay-top {
+    color: #fff;
 }
 .writer-works {
     margin-top: 20px;
@@ -1315,6 +1327,25 @@ a.content-item:hover {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
 }
+@media (max-width: 768px) {
+    .gallery-grid {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 16px;
+        padding-bottom: 10px; /* スクロールバー用余白 */
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* Firefox: スクロールバー非表示 */
+    }
+    .gallery-grid::-webkit-scrollbar {
+        display: none; /* Chrome/Safari: スクロールバー非表示 */
+    }
+    .gallery-item {
+        flex: 0 0 70%; /* スマホ画面の70%幅 */
+        width: 70%;
+        max-width: none;
+    }
+}
 .gallery-item img {
     width: 100%;
     height: 100%;
@@ -1340,4 +1371,61 @@ a.content-item:hover {
 }
 .bottom-contact-box p {
     margin-bottom: 30px;
+}
+
+/* =========================================
+   Gallery Modal
+========================================= */
+.gallery-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.gallery-modal.is-open {
+    display: flex;
+}
+
+.gallery-modal-content {
+    max-width: 90%;
+    max-height: 85vh;
+    border-radius: 8px;
+    object-fit: contain;
+    cursor: default; /* 画像上はデフォルトカーソル */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.gallery-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.gallery-modal-close:hover,
+.gallery-modal-close:focus {
+    color: #bbb;
+    text-decoration: none;
+}
+
+/* =========================================
+   Utility
+========================================= */
+@media (max-width: 768px) {
+    .pc-only {
+        display: none !important;
+    }
 }

@@ -100,7 +100,7 @@
                     <ul class="subnav-list">
                         <li><a href="#schedule">スケジュール</a></li>
                         <li><a href="#past">過去の公演</a></li>
-                        <li><a href="#writers">取り扱い文豪リスト</a></li>
+                        <li><a href="#writers"><span class="pc-only">取り扱い</span>文豪リスト</a></li>
                         <li><a href="#goods">グッズ</a></li>
                         <li><a href="#gallery">ギャラリー</a></li>
                     </ul>
@@ -117,8 +117,8 @@
                                 <p class="schedule-time">開館時間=18:30　開演時間=19:00</p>
                             </div>
                             <div class="schedule-ticket">
-                                <p>チケット=前売3,000円/当日3,500円（+2drink1,200円）</p>
-                                <p>※中学生以下無料（別途2drink1,200円のみ要） <span class="sold-out">※Thank You! Sold Out!</span></p>
+                                <p><del>チケット=前売3,000円/当日3,500円（+2drink1,200円）</del></p>
+                                <p><del>※中学生以下無料（別途2drink1,200円のみ要）</del> <span class="sold-out">※Thank You! Sold Out!</span></p>
                             </div>
                             <p class="schedule-cast">出演：Mao Takeuchi (NOVELS) and SpecialGuests</p>
                         </div>
@@ -138,8 +138,8 @@
                                     <p class="schedule-time">開館時間=18:30　開演時間=19:00</p>
                                 </div>
                                 <div class="schedule-ticket">
-                                    <p>チケット=前売3,000円/当日3,500円（+2drink1,200円）</p>
-                                    <p>※中学生以下無料（別途2drink1,200円のみ要）</p>
+                                    <p><del>チケット=前売3,000円/当日3,500円（+2drink1,200円）</del></p>
+                                    <p><del>※中学生以下無料（別途2drink1,200円のみ要）</del></p>
                                     <p class="sold-out">※Thank You! Sold Out!</p>
                                 </div>
                                 <p class="schedule-cast">出演：Mao Takeuchi (NOVELS) and SpecialGuests</p>
@@ -166,6 +166,7 @@
                                         <span class="details-icon">詳細を見る</span>
                                     </summary>
                                     <div class="writer-info-content">
+                                        <span class="close-overlay-top">×</span>
                                         <p>1896年（明治29年）8月27日 岩手県花巻市生まれ。<br>
                                             詩人、童話作家、教師、科学者、宗教家など多彩な顔を持つ一方、農民の生活向上を目指して羅須地人協会を設立。<br>
                                             37歳で永眠。<br>
@@ -181,9 +182,6 @@
                                                 <li>敗れし少年のうたへる</li>
                                                 <li>ぬすびと</li>
                                             </ul>
-                                        </div>
-                                        <div class="close-overlay-wrapper">
-                                            <span class="close-overlay">× 閉じる</span>
                                         </div>
                                     </div>
                                 </details>
@@ -203,6 +201,7 @@
                                         <span class="details-icon">詳細を見る</span>
                                     </summary>
                                     <div class="writer-info-content">
+                                        <span class="close-overlay-top">×</span>
                                         <p>1886年（明治19年）11月1日 群馬県前橋市生まれ。<br>
                                             近代詩の父と称される日本を代表する詩人。<br>
                                             『月に吠える』などで口語自由詩の新たな地平を切り拓いた。</p>
@@ -212,9 +211,6 @@
                                             <ul class="works-list">
                                                 <li>（その他の作品情報は後日追加予定）</li>
                                             </ul>
-                                        </div>
-                                        <div class="close-overlay-wrapper">
-                                            <span class="close-overlay">× 閉じる</span>
                                         </div>
                                     </div>
                                 </details>
@@ -245,10 +241,17 @@
                     </section>
                 </div>
 
+                <!-- ギャラリー拡大用モーダル -->
+                <div id="gallery-modal" class="gallery-modal">
+                    <span class="gallery-modal-close">×</span>
+                    <img id="gallery-modal-img" class="gallery-modal-content" src="" alt="拡大画像">
+                </div>
+
                 <!-- ページ下部導線 -->
                 <div class="boukyaku-bottom-area">
                     <div class="bottom-contact-box">
                         <p>公演に関するお問い合わせは以下よりお願いいたします。</p>
+                        <!-- TODO: GoogleフォームURL確定後に差し替え -->
                         <a href="index.html#contact" class="btn btn-primary">お問い合わせフォームへ</a>
                     </div>
                 </div>
