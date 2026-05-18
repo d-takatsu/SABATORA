@@ -33,7 +33,7 @@ html {
 body {
     font-family: var(--font-family-base);
     color: var(--color-text);
-    background-color: var(--color-bg);
+    background-color: var(--color-bg-alt); /* iPhone等の下部余白対策でフッター背景色に合わせる */
     line-height: 1.6;
     font-size: 16px;
     letter-spacing: 0.05em;
@@ -42,10 +42,12 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    min-height: 100dvh; /* iOS Safari等のアドレスバーを考慮した高さを追加 */
 }
 
 main {
     flex: 1;
+    background-color: var(--color-bg); /* 元のbodyの白背景をmainで担保 */
 }
 
 a {
@@ -1423,7 +1425,7 @@ a.content-item:hover {
 
     /* Boukyaku Page (忘却事象博覧会) */
     .boukyaku-page-wrapper {
-        padding-top: 110px; /* ヘッダーの物理的な高さに合わせて余白を増やす */
+        padding-top: 85px; /* 余白を25px詰めて16〜24px程度の見た目に調整 */
     }
     .boukyaku-page-wrapper .breadcrumb {
         padding-top: 18px;
@@ -1460,7 +1462,9 @@ a.content-item:hover {
         overflow-x: auto;
         justify-content: flex-start;
         gap: 20px;
+        padding-left: 20px; /* 左端に自然な余白を追加 */
         padding-right: 40px; /* 誘導UIと被らないように右余白を追加 */
+        scroll-padding-left: 20px; /* スクロール時の余白を確保 */
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
     }
