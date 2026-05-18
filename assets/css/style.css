@@ -680,18 +680,18 @@ a.content-item:hover {
 }
 @media (max-width: 991px) {
     .about-page-wrapper {
-        padding-top: 72px;
+        padding-top: 85px; /* ヘッダー高に合わせて修正(60+12+12+1) */
         padding-bottom: 24px; /* 下部余白も少し詰める */
     }
     .about-hero {
-        padding: 24px 0; /* 青帯の上下paddingを少し詰める */
+        padding: 20px 0; /* 青帯の上下paddingをさらに詰める */
     }
     .about-grid {
-        padding: 24px 20px; /* グリッドの上下余白を減らす */
-        gap: 24px; /* グリッド内の要素間の余白を減らす */
+        padding: 20px; /* グリッドの上下余白を減らす */
+        gap: 16px; /* グリッド内の要素間の余白をさらに減らす */
     }
     .about-img-area img {
-        width: 240px; /* 猫画像のサイズを少し小さくする */
+        width: 170px; /* 猫画像のサイズをさらに小さくする (240px->170px) */
     }
 }
 
@@ -1008,10 +1008,10 @@ a.content-item:hover {
 }
 @media (max-width: 991px) {
     .boukyaku-page-wrapper {
-        padding-top: 72px;
+        padding-top: 85px; /* ヘッダー高に合わせて修正 */
     }
     .breadcrumb {
-        padding: 25px 0 15px; /* 上側余白を少し増やす */
+        padding: 15px 0; /* 上下均等に戻す(ヘッダー被り解消により) */
     }
 }
 
@@ -1095,7 +1095,8 @@ a.content-item:hover {
         overflow-x: auto;
         justify-content: flex-start;
         gap: 20px;
-        padding-bottom: 10px; /* スクロールバー用余白 */
+        padding-top: 5px; /* リンクの下線(5px)とバランスを取るための上余白 */
+        padding-bottom: 0px; /* 下側の余白をなくして上下中央に見せる */
         padding-right: 40px; /* 誘導UIと被らないように右余白を追加 */
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none; /* Firefox: スクロールバー非表示 */
