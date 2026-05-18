@@ -661,14 +661,6 @@ a.content-item:hover {
     height: 80px; /* 右下のロゴを少し大きめに */
 }
 
-@media (max-width: 768px) {
-    .footer {
-        padding: 24px 0; /* フッターの上下paddingを少し詰める */
-    }
-    .footer-logo {
-        height: 44px; /* フッターロゴサイズを少し小さくする */
-    }
-}
 
 /* =========================================
    About Page Re-design
@@ -677,22 +669,6 @@ a.content-item:hover {
     padding-top: 240px;
     padding-bottom: 80px;
     background-color: var(--color-bg);
-}
-@media (max-width: 991px) {
-    .about-page-wrapper {
-        padding-top: 85px; /* ヘッダー高に合わせて修正(60+12+12+1) */
-        padding-bottom: 24px; /* 下部余白も少し詰める */
-    }
-    .about-hero {
-        padding: 20px 0; /* 青帯の上下paddingをさらに詰める */
-    }
-    .about-grid {
-        padding: 20px; /* グリッドの上下余白を減らす */
-        gap: 16px; /* グリッド内の要素間の余白をさらに減らす */
-    }
-    .about-img-area img {
-        width: 170px; /* 猫画像のサイズをさらに小さくする (240px->170px) */
-    }
 }
 
 .about-main-container {
@@ -1006,14 +982,6 @@ a.content-item:hover {
     padding-bottom: 0;
     background-color: var(--color-bg);
 }
-@media (max-width: 991px) {
-    .boukyaku-page-wrapper {
-        padding-top: 85px; /* ヘッダー高に合わせて修正 */
-    }
-    .breadcrumb {
-        padding: 15px 0; /* 上下均等に戻す(ヘッダー被り解消により) */
-    }
-}
 
 .boukyaku-main-container {
     max-width: 1000px;
@@ -1087,43 +1055,6 @@ a.content-item:hover {
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px 40px;
-}
-@media (max-width: 768px) {
-    .subnav-list {
-        display: flex;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        justify-content: flex-start;
-        gap: 20px;
-        padding-top: 5px; /* リンクの下線(5px)とバランスを取るための上余白 */
-        padding-bottom: 0px; /* 下側の余白をなくして上下中央に見せる */
-        padding-right: 40px; /* 誘導UIと被らないように右余白を追加 */
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none; /* Firefox: スクロールバー非表示 */
-    }
-    .subnav-list::-webkit-scrollbar {
-        display: none; /* Chrome/Safari: スクロールバー非表示 */
-    }
-    .subnav-list li {
-        white-space: nowrap;
-    }
-    /* 横スクロール誘導UI */
-    .boukyaku-subnav::after {
-        content: '\203A'; /* 右向き矢印 › */
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        width: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        padding-right: 15px;
-        font-size: 1.5rem;
-        color: var(--color-text-light);
-        background: linear-gradient(to right, rgba(250,250,250,0) 0%, rgba(250,250,250,1) 70%); /* var(--color-bg-alt)と同系のグラデーション */
-        pointer-events: none; /* クリックを阻害しない */
-    }
 }
 .subnav-list a {
     font-size: 0.95rem;
@@ -1463,5 +1394,120 @@ a.content-item:hover {
 @media (max-width: 768px) {
     .pc-only {
         display: none !important;
+    }
+}
+
+/* =========================================
+   Mobile Tweaks (上書き優先のため末尾に配置)
+========================================= */
+
+@media (max-width: 991px) {
+    /* About Page */
+    .about-page-wrapper {
+        padding-top: 105px; /* ヘッダー高+αを考慮して増やす */
+        padding-bottom: 24px;
+    }
+    .about-hero {
+        padding: 24px 0;
+    }
+    .about-grid {
+        padding-top: 24px;
+        padding-bottom: 32px;
+        gap: 20px;
+    }
+    /* ★ベース指定(350px)より後ろに置くことで確実に上書き */
+    .about-page-wrapper .about-img-area img {
+        width: 220px;
+        max-width: 70vw;
+    }
+
+    /* Boukyaku Page (忘却事象博覧会) */
+    .boukyaku-page-wrapper {
+        padding-top: 110px; /* ヘッダーの物理的な高さに合わせて余白を増やす */
+    }
+    .boukyaku-page-wrapper .breadcrumb {
+        padding-top: 18px;
+        padding-bottom: 18px; /* 上下均等にして罫線の中央に見せる */
+    }
+}
+
+@media (max-width: 768px) {
+    /* Footer */
+    .footer {
+        padding: 24px 0;
+    }
+    .footer-logo {
+        height: 44px;
+    }
+
+    /* SubNav (サブナビの文字を帯の上下中央に配置) */
+    .boukyaku-subnav {
+        padding: 0;
+        min-height: 64px;
+        display: flex;
+        align-items: center;
+    }
+    .boukyaku-subnav .subnav-list {
+        align-items: center;
+        height: 64px;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin: 0;
+        
+        /* 横スクロール設定 */
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        gap: 20px;
+        padding-right: 40px; /* 誘導UIと被らないように右余白を追加 */
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .subnav-list::-webkit-scrollbar {
+        display: none;
+    }
+    .subnav-list li {
+        white-space: nowrap;
+    }
+    
+    /* 下線分のpaddingをなくして要素全体を中央揃えにする */
+    .boukyaku-subnav .subnav-list a {
+        display: inline-flex;
+        align-items: center;
+        height: 64px;
+        padding-bottom: 0; /* 元の5pxを消去 */
+        border-bottom: none; /* 元の下線を消去 */
+        position: relative;
+    }
+    
+    /* PC用のhover時下線(border-bottom-color)の代わりに、疑似要素で下線を表現する */
+    .boukyaku-subnav .subnav-list a:hover::after,
+    .boukyaku-subnav .subnav-list a:focus::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 14px;
+        height: 2px;
+        background: var(--color-primary);
+    }
+
+    /* 横スクロール誘導UI */
+    .boukyaku-subnav::after {
+        content: '\203A'; /* 右向き矢印 › */
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 15px;
+        font-size: 1.5rem;
+        color: var(--color-text-light);
+        background: linear-gradient(to right, rgba(250,250,250,0) 0%, rgba(250,250,250,1) 70%);
+        pointer-events: none;
     }
 }
