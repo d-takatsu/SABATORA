@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Smooth Scroll
     // ==========================================
     const smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
-    const headerHeight = document.querySelector('.header').offsetHeight || 71;
+    const headerEl = document.querySelector('.header');
 
     smoothScrollLinks.forEach(link => {
         link.addEventListener('click', (e) => {
@@ -38,6 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (targetElement) {
                 e.preventDefault();
 
+                // クリック時にヘッダー高さを再取得（レスポンシブ対応）
+                const headerHeight = headerEl ? headerEl.offsetHeight : 56;
                 const elementPosition = targetElement.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
 
@@ -45,6 +47,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     top: offsetPosition,
                     behavior: 'smooth'
                 });
+            }
+        });
+    });
+
+    // ==========================================
+    // 3. Overlay Close (Writer Details)
+    // ==========================================
+    const closeOverlays = document.querySelectorAll('.close-overlay');
+    closeOverlays.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const details = e.target.closest('details');
+            if (details) {
+                details.removeAttribute('open');
             }
         });
     });
