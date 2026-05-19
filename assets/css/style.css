@@ -507,8 +507,15 @@ a.content-item:hover {
 
 .links-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr); /* PC: 3列 → 5項目の場合は3+2の自然折り返し */
     gap: 20px;
+}
+
+/* 5項目ある場合、PCは3列の後に2列が来る自然な配置 */
+@media (min-width: 769px) {
+    .links-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 @media (max-width: 768px) {
@@ -547,6 +554,15 @@ a.content-item:hover {
     height: 40px;
 }
 
+/* SHOP / note などのアイコンなしリンク用テキストプレースホルダー */
+.link-icon-text {
+    font-family: var(--font-family-en);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    letter-spacing: 0.05em;
+}
+
 .link-name {
     font-family: var(--font-family-en);
     font-size: 1rem;
@@ -581,6 +597,27 @@ a.content-item:hover {
 .contact-desc {
     font-size: 1.1rem;
     margin-bottom: 30px;
+}
+
+/* =========================================
+   Works Section
+========================================= */
+.works-section {
+    background-color: var(--color-bg);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    text-align: center;
+}
+
+.works-body {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.works-desc {
+    font-size: 0.95rem;
+    color: var(--color-text-light);
+    padding: 8px 0;
 }
 
 /* =========================================
