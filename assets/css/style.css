@@ -22,6 +22,7 @@
 html {
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    background-color: var(--color-bg-alt); /* iOS Chromeのフッター下余白(ルート露出)対策 */
 }
 
 * {
