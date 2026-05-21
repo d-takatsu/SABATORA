@@ -314,6 +314,30 @@ button {
     background-color: #e2e8f0;
 }
 
+/* ロゴ画像をトップに使用する場合のバリアント */
+.hero-banner--logo {
+    background-color: var(--color-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+.hero-banner--logo img {
+    width: auto;
+    height: auto;
+    max-width: 420px;
+    max-height: 420px;
+    min-height: unset;
+    object-fit: contain;
+    background-color: transparent;
+}
+@media (max-width: 768px) {
+    .hero-banner--logo img {
+        max-width: 80vw;
+        max-height: 80vw;
+    }
+}
+
 /* =========================================
    News / Topics
 ========================================= */
@@ -428,12 +452,12 @@ button {
     align-items: center;
     justify-content: center;
     background-color: #fff;
-    padding: 60px 20px; /* 縦方向に余裕を持たせて正方形に近づける */
+    padding: 30px 20px; /* 上下パディングを詳めて正方形寄りに */
     border-radius: 12px;
     border: 1px solid var(--color-border);
     transition: transform 0.3s, box-shadow 0.3s;
     text-align: center;
-    min-height: 280px; /* 主役感のある高さ */
+    min-height: 260px; /* 高さを少し抜いて正方形寄りに */
 }
 
 a.content-item:hover {
@@ -444,8 +468,8 @@ a.content-item:hover {
 
 /* CONTENT内の小さな視覚要素 */
 .content-icon {
-    height: 85px; /* 約1.5倍に拡大してしっかり視認できるように */
-    margin-bottom: 25px; /* アイコンとタイトルの余白調整 */
+    height: 140px; /* 約2倍に拡大 */
+    margin-bottom: 18px; /* アイコンとタイトルの余白調整 */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -955,14 +979,14 @@ a.content-item:hover {
         font-size: 0.9rem;
     }
     
-    /* CONTENTカード：スマホでは高さとpaddingを縮小 */
+    /* CONTENTカード：スマホでは正方形寄りにpaddingを調整 */
     .content-item {
-        padding: 16px 12px; /* 余白をさらに減らす */
+        padding: 20px 12px; /* 余白をさらに減らす */
         min-height: auto; /* 高さを固定しない */
     }
     .content-icon {
-        height: 50px; /* 少し縮小してバランスをとる */
-        margin-bottom: 8px; /* アイコン上の余白を減らす(タイトルの上の余白を詰める) */
+        height: 90px; /* スマホでも十分な大きさに */
+        margin-bottom: 10px;
     }
     .content-title {
         font-size: 1.15rem; /* スマホ向けに少し文字サイズを調整 */
@@ -1226,7 +1250,7 @@ a.content-item:hover {
     display: flex;
     justify-content: center;
     margin-bottom: 15px;
-    height: 250px;
+    height: 320px; /* 小さいので拡大（250px→320px） */
 }
 .writer-img {
     max-height: 100%;
@@ -1270,7 +1294,7 @@ a.content-item:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(40, 40, 40, 0.95);
+    background-color: rgba(40, 40, 40, 0.70); /* さらに透明度を上げる(0.82→0.70) */
     color: #fff;
     padding: 30px;
     margin-top: 0;
@@ -1331,7 +1355,7 @@ a.content-item:hover {
 /* Gallery */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* 5枚対応で自然に折り返し */
     gap: 20px;
 }
 @media (max-width: 768px) {
