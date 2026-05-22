@@ -587,6 +587,11 @@ a.content-item:hover {
     letter-spacing: 0.05em;
 }
 
+/* アイコンなし版カード：アイコン分の高さを上余白で補う */
+.link-item--no-icon {
+    padding-top: 55px; /* link-icon の height(40px) + margin-bottom(15px) 相当 */
+}
+
 .link-name {
     font-family: var(--font-family-en);
     font-size: 1rem;
